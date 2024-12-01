@@ -1,0 +1,30 @@
+version: "latest"
+services:
+    phpmyadmin:
+          image: phpmyadmin/phpmyadmin
+          restart: always
+          ports:
+              - '7777:80'
+          environment:
+               - PMA_HOST=db
+          depends_on:
+            - db
+
+    db:
+        image: mysql:latest
+        ports:
+          - "5500:3306"
+        restart: unless-stopped
+        environment:
+            MYSQL_USER: user
+            MYSQL_PASSWORD: 12345678
+            MYSQL_ROOT_PASSWORD: 12345678
+
+    phpstan:
+      build:
+        context: ./../
+        dockerfile: ./issueBoards/.dev/phpStan/Dockerfile
+      volumes:
+        - ./../issueBoards:/code:delegated
+      profiles:
+        - donotstart

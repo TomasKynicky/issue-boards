@@ -1,0 +1,35 @@
+
+PHPStanBuild:
+  extends: .auto-build
+  interruptible: true
+  needs: [ GeneratorCloud, Vendor Dev ]
+  tags: [ 'build' ]
+  variables:
+    AUTO_BUILD_DOCKERFILE: .build/phpstan/Dockerfile
+    AUTO_BUILD_TAG_POSTFIX: -phpstan
+  rules:
+    - if: '$BUILD_DISABLED'
+      when: never
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        paths:
+          - "**/*.php"
+
+
+PHPStan:
+  stage: test
+  interruptible: true
+  tags: [ lightweight ]
+  needs: [ PHPStanBuild ]
+  allow_failure: true
+  image: '$CI_REGISTRY_IMAGE/$CI_COMMIT_REF_SLUG:$CI_COMMIT_SHA-phpstan'
+  script:
+    - mv /code/* $CI_PROJECT_DIR
+    - /app/phpstan.phar analyse src --level=7 --memory-limit=1G
+  rules:
+    - if: '$CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH'
+    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
+      changes:
+        paths:
+          - "**/*.php"
