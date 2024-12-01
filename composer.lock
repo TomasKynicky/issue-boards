@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "13372a3df18b01f6f8452fb34c69ff70",
+    "content-hash": "9ea4c19471d21ce503da48439b488fdf",
     "packages": [
         {
             "name": "composer/semver",
@@ -7444,6 +7444,43 @@
             "time": "2024-10-23T06:56:12+00:00"
         },
         {
+            "name": "tomaskynicky/entity-creator",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/TomasKynicky/entityCreator.git",
+                "reference": "56d17b53323c32dd24d4bf565bc666e5daf7c769"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/TomasKynicky/entityCreator/zipball/56d17b53323c32dd24d4bf565bc666e5daf7c769",
+                "reference": "56d17b53323c32dd24d4bf565bc666e5daf7c769",
+                "shasum": ""
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Tomaskynicky\\EntityCreator\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Tomáš Kynický"
+                }
+            ],
+            "description": "Array to Entity",
+            "support": {
+                "issues": "https://github.com/TomasKynicky/entityCreator/issues",
+                "source": "https://github.com/TomasKynicky/entityCreator/tree/main"
+            },
+            "time": "2024-11-18T08:58:20+00:00"
+        },
+        {
             "name": "twig/extra-bundle",
             "version": "v3.16.0",
             "source": {
@@ -9928,7 +9965,9 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {
+        "tomaskynicky/entity-creator": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
